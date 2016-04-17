@@ -52,9 +52,9 @@ var Partial_Scrabble = function(){
 		
 		for (var i = 0; i < str.length; i++){
 			if (str[i] < arr[split][i]){
-				return this.check_word(str, arr.splice(0,split))
+				return check_word(str, arr.splice(0,split))
 			}else if (str[i] > arr[split][i]){
-				return this.check_word(str, arr.splice(split,arr.length))
+				return check_word(str, arr.splice(split,arr.length))
 			}
 		}
 	}
