@@ -76,7 +76,7 @@ var Partial_Scrabble = function(){
 		    var str_len = str.length;
 		  
 		    if(!prefix){
-		    	pre_fix = "";
+		    	prefix = "";
 		    }
 		    if(!arr){
 		    	arr=[];
@@ -86,8 +86,8 @@ var Partial_Scrabble = function(){
 		    }
 	
 		    for(var i=0; i<str_len; i++){
-				all_anagrams(str.substring(0, i) + str.substring(i+1, str_len), pre_fix + str[i], arr);
-			}
+			all_anagrams(str.substring(0, i) + str.substring(i+1, str_len), pre_fix + str[i], arr);
+		     }
 	
 		  	return arr;
 		},
@@ -96,11 +96,11 @@ var Partial_Scrabble = function(){
 		//we are actively avoiding including any possible permutation
 		"all_combos": function(arr){
 			var combos = [];
-  			var f = function(prefix, arr) {
-	    		for (var i = 0; i < arr.length; i++) {
-	      			combos.push(prefix + arr[i]);
-	      			f(prefix + arr[i], arr.slice(i + 1));
-	    		}
+  			var combine = function(prefix, arr) {
+		    		for (var i = 0; i < arr.length; i++) {
+		      			combos.push(prefix + arr[i]);
+		      			combine(prefix + arr[i], arr.slice(i + 1));
+		    		}
 	  		};
   			f('', arr);
   			return combos;
@@ -250,8 +250,3 @@ Partial_Scrabble.prototype.restart = function(){
 	this.end_game();
 	this.start();
 }
-
-x = new Partial_Scrabble();
-x.start();
-x.draw();
-x.cheat();
